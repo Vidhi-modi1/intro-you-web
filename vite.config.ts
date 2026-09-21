@@ -87,12 +87,12 @@ import { defineConfig } from 'vite';
     },
  build: {
     target: 'esnext',
-    outDir: 'build',
-    rollupOptions: {
-      output: {
-        manualChunks: undefined, // Disable code splitting for Vercel
-      },
+     outDir: 'dist',   // was 'build'
+  rollupOptions: {
+    output: {
+      manualChunks: undefined,
     },
+  },
   },
   server: {
     host: true,
