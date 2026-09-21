@@ -62,6 +62,7 @@
   import SafeDating from "./components/SafeDating";
   import Contact from "./components/Contact";
   import RegionBlockedPage from "./components/RegionBlockedPage";
+  import CookieConsentBanner from "./components/CookieConsentBanner";
 
   // Scroll handler
   function ScrollToTop() {
@@ -200,6 +201,7 @@
             <Route path="/contact" element={<Contact />} />
             <Route path="/blocked" element={<RegionBlockedPage />} />
           </Routes>
+          <CookieConsentBanner />
         </Router>
       </HelmetProvider>
     );

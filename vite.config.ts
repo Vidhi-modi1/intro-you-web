@@ -87,7 +87,7 @@ import { defineConfig } from 'vite';
     },
  build: {
     target: 'esnext',
-     outDir: 'dist',   // was 'build'
+     outDir: 'dist', 
   rollupOptions: {
     output: {
       manualChunks: undefined,
