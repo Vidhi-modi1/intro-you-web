@@ -1,0 +1,13 @@
+.press-logos-swiper .swiper-pagination-bullet {
+  background-color: #ffffff;
+  opacity: 0.5;
+}
+
+.press-logos-swiper .swiper-pagination-bullet-active {
+  background-color: #ffffff;
+  opacity: 1;
+}
+
+.press-logos-swiper .swiper-pagination {
+  bottom: 0;
+}
