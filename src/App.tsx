@@ -201,7 +201,8 @@
             <Route path="/contact" element={<Contact />} />
             <Route path="/blocked" element={<RegionBlockedPage />} />
           </Routes>
-          <CookieConsentBanner />
+          {/* Cookiebot CMP is now loaded via index.html */}
+          {/* <CookieConsentBanner /> */}
         </Router>
       </HelmetProvider>
     );
