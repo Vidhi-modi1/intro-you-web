@@ -4,10 +4,222 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 /* font-family: "Raleway", sans-serif; */
 
-/* Cookiebot CMP branding removal */
-a#CybotCookiebotDialogPoweredbyCybot,
-div#CybotCookiebotDialogPoweredByText {
+/* Cookiebot CMP custom responsive styling */
+:root {
+  --iy-purple: #7A1878;
+  --iy-purple-dark: #5E1260;
+  --iy-text: #1F1A21;
+}
+
+/* No dark overlay over the page */
+#CybotCookiebotDialogBodyUnderlay {
   display: none !important;
+}
+
+/* The card itself: small, bottom-centre, never covers the hero */
+#CybotCookiebotDialog {
+  position: fixed !important;
+  top: auto !important;
+  bottom: 10px !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 20px) !important;
+  max-width: 560px !important;
+  min-width: 0 !important;
+  max-height: 80vh !important;     /* room for "Show details" if opened */
+  overflow-y: auto !important;
+  margin: 0 !important;
+  padding: 11px 14px !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18) !important;
+  background: #FFFFFF !important;
+  color: var(--iy-text) !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  letter-spacing: 0 !important;
+}
+
+/* Header row: keep only the close X, pinned small in the top-right corner.
+   The X must apply "Essential only" (no tracking) - confirm this when testing. */
+#CybotCookiebotDialogHeader {
+  position: absolute !important;
+  top: 4px !important;
+  right: 4px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  z-index: 2 !important;
+}
+
+#CybotCookiebotDialogHeaderLogosWrapper,
+#CybotCookiebotDialogPoweredbyImage,
+#CybotCookiebotDialogPoweredbyLink {
+  display: none !important;
+}
+
+#CybotCookiebotBannerCloseButtonE2E {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #6B6470 !important;
+}
+
+#CybotCookiebotBannerCloseButtonE2E svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Keep the text clear of the X */
+#CybotCookiebotDialogBodyContentText {
+  padding-right: 22px !important;
+}
+
+/* Remove the bulky extras: title, "powered by" */
+#CybotCookiebotDialogBodyContentTitle,
+a#CybotCookiebotDialogPoweredbyCybot,
+#CybotCookiebotDialogPoweredbyCybot,
+#CybotCookiebotDialogPoweredByText,
+#CybotCookiebotDialog .CybotCookiebotDialogBodyBottomWrapper {
+  display: none !important;
+}
+
+/* Strip inner padding, borders and minimum heights */
+#CybotCookiebotDialog .CybotCookiebotDialogContentWrapper,
+#CybotCookiebotDialog .CybotCookiebotScrollContainer,
+#CybotCookiebotDialogBody,
+#CybotCookiebotDialogBodyContent,
+#CybotCookiebotDialogFooter {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+}
+
+#CybotCookiebotDialog .CybotCookiebotDialogContentWrapper {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* The one line of text */
+#CybotCookiebotDialogBodyContentText,
+#CybotCookiebotDialogBodyContentText p {
+  margin: 0 !important;
+  font-size: 11.5px !important;
+  line-height: 1.4 !important;
+  color: #3A343D !important;
+}
+
+#CybotCookiebotDialogBodyContentText a {
+  color: var(--iy-purple) !important;
+  text-decoration: underline !important;
+}
+
+/* "Show details" as a small link, not a full row */
+#CybotCookiebotDialogBodyEdgeMoreDetails {
+  margin: 2px 0 0 !important;
+  padding: 0 !important;
+  justify-content: flex-start !important;
+}
+
+#CybotCookiebotDialogBodyEdgeMoreDetailsLink {
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: var(--iy-purple) !important;
+}
+
+/* Buttons: side by side, same size, same style (ICO: reject as prominent as accept) */
+#CybotCookiebotDialogFooter {
+  padding-top: 8px !important;
+}
+
+#CybotCookiebotDialogBodyButtonsWrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+#CybotCookiebotDialogBodyButtonDecline,
+#CybotCookiebotDialogBodyButtonAccept,
+#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll {
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+  border: 2px solid var(--iy-purple) !important;
+  border-radius: 999px !important;
+  background: var(--iy-purple) !important;
+  color: #FFFFFF !important;
+  font-family: inherit !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+#CybotCookiebotDialogBodyButtonDecline:hover,
+#CybotCookiebotDialogBodyButtonAccept:hover,
+#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll:hover {
+  background: var(--iy-purple-dark) !important;
+  border-color: var(--iy-purple-dark) !important;
+}
+
+/* "Customise" button is redundant with the "Show details" link */
+#CybotCookiebotDialogBodyLevelButtonCustomize {
+  display: none !important;
+}
+
+/* Desktop: one slim bar across the bottom - text left, buttons right */
+@media (min-width: 900px) {
+  #CybotCookiebotDialog {
+    left: 24px !important;
+    right: 24px !important;
+    bottom: 20px !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 12px 14px 12px 20px !important;
+  }
+
+  #CybotCookiebotDialog .CybotCookiebotDialogContentWrapper {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 24px !important;
+  }
+
+  #CybotCookiebotDialogBodyContentText,
+  #CybotCookiebotDialogBodyContentText p {
+    font-size: 13px !important;
+  }
+
+  #CybotCookiebotDialogFooter {
+    width: auto !important;
+    flex: none !important;
+    padding-top: 0 !important;
+  }
+
+  #CybotCookiebotDialogBodyButtonDecline,
+  #CybotCookiebotDialogBodyButtonAccept,
+  #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll {
+    flex: none !important;
+    width: 150px !important;
+  }
 }
 
 
