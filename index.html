@@ -181,7 +181,7 @@
         overflow: visible !important;
       }
 
-      /* 4. Tab content and inline text flow - top to bottom centered */
+      /* 4. Tab content and inline text flow - vertically centered (align center) */
       #CybotCookiebotDialogTabContent {
         display: flex !important;
         flex-direction: column !important;
@@ -191,13 +191,11 @@
         margin: 0 !important;
         padding: 0 28px 0 0 !important; /* space for close button on mobile */
         box-sizing: border-box !important;
-        text-align: center !important;
       }
 
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) {
         display: inline !important;
         line-height: inherit !important;
-        text-align: center !important;
       }
 
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) .CybotCookiebotScrollContainer,
@@ -380,19 +378,15 @@
           display: flex !important;
           flex-direction: row !important;
           flex-wrap: wrap !important;
-          align-items: center !important; /* Top-to-bottom center */
-          justify-content: center !important;
+          align-items: center !important; /* Vertically centered (align center) */
           min-height: 0 !important; /* Overrides Cookiebot 60px min-height */
-          text-align: center !important;
         }
 
         #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) {
           display: inline-flex !important;
-          align-items: center !important;
+          align-items: center !important; /* Vertically centered */
           flex-wrap: wrap !important;
-          justify-content: center !important;
           line-height: inherit !important;
-          text-align: center !important;
         }
 
         #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText,
@@ -401,7 +395,6 @@
         #CybotCookiebotDialogBodyEdgeMoreDetailsLink {
           font-size: 13px !important;
           line-height: 1.4 !important;
-          text-align: center !important;
         }
 
         #CybotCookiebotDialogFooter {
@@ -437,6 +430,17 @@
         }
       }
 
+      /* Force button order: First Accept all, then Essential only */
+      #CybotCookiebotDialogBodyButtonAccept,
+      #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll {
+        order: 1 !important;
+      }
+
+      #CybotCookiebotDialogBodyButtonDecline,
+      #CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll {
+        order: 2 !important;
+      }
+
       /* 8. Details Panel (when user clicks "Show details") */
       #CybotCookiebotDialog:has(#CybotCookiebotDialogTabContentDetails:not(.CybotCookiebotDialogHide)) {
         max-width: 720px !important;
@@ -459,10 +463,10 @@
       }
     </style>
 
-    <!-- Helper script to format button casing to 'Accept all' and 'Essential only' -->
+    <!-- Helper script to format button casing, order, and handle Show details link redirect -->
     <script>
       (function() {
-        function formatCookiebotButtons() {
+        function setupCookiebotBanner() {
           var acceptBtn = document.getElementById('CybotCookiebotDialogBodyButtonAccept') || 
                           document.getElementById('CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll');
           if (acceptBtn && acceptBtn.textContent.trim().toLowerCase() === 'accept all') {
@@ -473,10 +477,25 @@
           if (declineBtn && declineBtn.textContent.trim().toLowerCase() === 'essential only') {
             declineBtn.textContent = 'Essential only';
           }
+
+          // Redirect "Show details" link to /policy
+          var detailsLink = document.getElementById('CybotCookiebotDialogBodyEdgeMoreDetailsLink') ||
+                            document.querySelector('#CybotCookiebotDialogBodyEdgeMoreDetails a') ||
+                            document.querySelector('.CybotCookiebotDialogBodyBottomWrapper a');
+          if (detailsLink && !detailsLink.dataset.redirectBound) {
+            detailsLink.dataset.redirectBound = 'true';
+            detailsLink.setAttribute('href', '/policy');
+            detailsLink.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              e.stopImmediatePropagation();
+              window.location.href = '/policy';
+            }, true);
+          }
         }
 
-        window.addEventListener('CookiebotOnDialogDisplay', formatCookiebotButtons);
-        window.addEventListener('CookiebotOnLoad', formatCookiebotButtons);
+        window.addEventListener('CookiebotOnDialogDisplay', setupCookiebotBanner);
+        window.addEventListener('CookiebotOnLoad', setupCookiebotBanner);
       })();
     </script>
 
