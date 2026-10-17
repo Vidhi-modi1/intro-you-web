@@ -105,7 +105,6 @@
       .CybotCookiebotDialogPoweredByText,
       #CybotCookiebotDialogBodyContentTitle,
       #CybotCookiebotDialogNav,
-      .CybotCookiebotDialogBodyBottomWrapper,
       #CybotCookiebotDialogBodyLevelWrapper,
       #CybotCookiebotDialogBodyLevelButtonCustomize,
       #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection,
@@ -116,6 +115,14 @@
       #CybotCookiebotDialogBodyContentDsrText,
       .CybotCookiebotDialogGpcContainer {
         display: none !important;
+      }
+
+      /* Unhide and style Show details wrapper */
+      .CybotCookiebotDialogBodyBottomWrapper,
+      #CybotCookiebotDialogBodyEdgeMoreDetails,
+      #CybotCookiebotDialogBodyEdgeMoreDetailsLink {
+        display: inline !important;
+        visibility: visible !important;
       }
 
       /* 3. Base dialog container - Mobile default (card floating at bottom) */
@@ -174,18 +181,23 @@
         overflow: visible !important;
       }
 
-      /* 4. Tab content and inline text flow */
+      /* 4. Tab content and inline text flow - top to bottom centered */
       #CybotCookiebotDialogTabContent {
-        display: block !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        min-height: 0 !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 28px 0 0 !important; /* space for close button on mobile */
         box-sizing: border-box !important;
+        text-align: center !important;
       }
 
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) {
         display: inline !important;
         line-height: inherit !important;
+        text-align: center !important;
       }
 
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) .CybotCookiebotScrollContainer,
@@ -365,6 +377,22 @@
           flex: 1 1 auto !important;
           width: auto !important;
           padding-right: 0 !important;
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: wrap !important;
+          align-items: center !important; /* Top-to-bottom center */
+          justify-content: center !important;
+          min-height: 0 !important; /* Overrides Cookiebot 60px min-height */
+          text-align: center !important;
+        }
+
+        #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) {
+          display: inline-flex !important;
+          align-items: center !important;
+          flex-wrap: wrap !important;
+          justify-content: center !important;
+          line-height: inherit !important;
+          text-align: center !important;
         }
 
         #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText,
@@ -373,6 +401,7 @@
         #CybotCookiebotDialogBodyEdgeMoreDetailsLink {
           font-size: 13px !important;
           line-height: 1.4 !important;
+          text-align: center !important;
         }
 
         #CybotCookiebotDialogFooter {
