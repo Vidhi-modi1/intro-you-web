@@ -181,16 +181,14 @@
         overflow: visible !important;
       }
 
-      /* 4. Tab content and inline text flow - vertically centered (align center) */
+      /* 4. Tab content and inline text flow */
       #CybotCookiebotDialogTabContent {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        min-height: 0 !important;
+        display: block !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 28px 0 0 !important; /* space for close button on mobile */
         box-sizing: border-box !important;
+        min-height: 0 !important;
       }
 
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) {
@@ -202,7 +200,10 @@
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContent,
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText,
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText p,
-      #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText span {
+      #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText span,
+      .CybotCookiebotDialogBodyBottomWrapper,
+      #CybotCookiebotDialogBodyEdgeMoreDetails,
+      #CybotCookiebotDialogBodyEdgeMoreDetailsLink {
         display: inline !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -230,6 +231,7 @@
         text-underline-offset: 2px !important;
         cursor: pointer !important;
         transition: color 0.15s ease !important;
+        white-space: nowrap !important;
       }
 
       #CybotCookiebotDialogBodyEdgeMoreDetailsLink:hover {
@@ -350,83 +352,160 @@
         transform: scale(0.98) !important;
       }
 
-      /* 7. Desktop Responsive Bar (Screens >= 900px) */
-      @media (min-width: 900px) {
+      /* 7. Desktop / Tablet Responsive Bar (Screens >= 768px) */
+      @media (min-width: 768px) {
         #CybotCookiebotDialog {
           bottom: 20px !important;
           left: 50% !important;
           right: auto !important;
           transform: translateX(-50%) !important;
           width: calc(100% - 48px) !important;
-          max-width: 1140px !important;
-          padding: 12px 20px 12px 24px !important;
-          border-radius: 14px !important;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+          max-width: 1280px !important;
+          min-height: 0 !important;
+          padding: 8px 16px 8px 22px !important;
+          border-radius: 12px !important;
+          box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+          border: none !important;
+          background: #FFFFFF !important;
         }
 
         #CybotCookiebotDialog .CybotCookiebotDialogContentWrapper {
+          display: flex !important;
           flex-direction: row !important;
+          flex-wrap: nowrap !important;
           align-items: center !important;
           justify-content: space-between !important;
-          gap: 20px !important;
+          gap: 16px !important;
+          width: 100% !important;
+          min-height: 0 !important;
         }
 
         #CybotCookiebotDialogTabContent {
           flex: 1 1 auto !important;
           width: auto !important;
+          min-width: 0 !important;
           padding-right: 0 !important;
+          min-height: 0 !important;
           display: flex !important;
-          flex-direction: row !important;
-          flex-wrap: wrap !important;
-          align-items: center !important; /* Vertically centered (align center) */
-          min-height: 0 !important; /* Overrides Cookiebot 60px min-height */
+          align-items: center !important;
+          line-height: 1.35 !important;
         }
 
         #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) {
-          display: inline-flex !important;
-          align-items: center !important; /* Vertically centered */
-          flex-wrap: wrap !important;
+          display: inline !important;
           line-height: inherit !important;
+          min-height: 0 !important;
         }
 
+        #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) .CybotCookiebotScrollContainer,
+        #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContent,
         #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText,
         #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText p,
         #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) #CybotCookiebotDialogBodyContentText span,
+        .CybotCookiebotDialogBodyBottomWrapper,
+        #CybotCookiebotDialogBodyEdgeMoreDetails,
         #CybotCookiebotDialogBodyEdgeMoreDetailsLink {
-          font-size: 13px !important;
-          line-height: 1.4 !important;
+          display: inline !important;
+          font-size: 12px !important;
+          line-height: 1.35 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          color: #2D2730 !important;
+          vertical-align: baseline !important;
+        }
+
+        #CybotCookiebotDialogBodyEdgeMoreDetailsLink {
+          margin-left: 5px !important;
+          font-weight: 700 !important;
+          color: var(--iy-purple) !important;
+          text-decoration: underline !important;
+          text-underline-offset: 2px !important;
+          white-space: nowrap !important;
         }
 
         #CybotCookiebotDialogFooter {
           flex: 0 0 auto !important;
           width: auto !important;
           margin: 0 !important;
+          padding: 0 !important;
+          display: flex !important;
+          align-items: center !important;
         }
 
         #CybotCookiebotDialogBodyButtons,
         #CybotCookiebotDialogBodyButtonsWrapper {
+          display: flex !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          flex-wrap: nowrap !important;
           width: auto !important;
-          gap: 10px !important;
+          gap: 8px !important;
         }
 
         #CybotCookiebotDialogBodyButtonAccept,
-        #CybotCookiebotDialogBodyButtonDecline,
-        #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll,
-        #CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll {
+        #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll {
+          order: 1 !important;
           flex: 0 0 auto !important;
           width: auto !important;
-          min-width: 124px !important;
-          height: 38px !important;
-          padding: 0 22px !important;
+          min-width: 95px !important;
+          height: 34px !important;
+          padding: 0 18px !important;
+          background: var(--iy-purple) !important;
+          border: 1px solid var(--iy-purple) !important;
+          border-radius: 9999px !important;
+          color: #FFFFFF !important;
+          font-family: inherit !important;
+          font-size: 12px !important;
+          font-weight: 700 !important;
+          text-align: center !important;
+          white-space: nowrap !important;
+          cursor: pointer !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease !important;
+        }
+
+        #CybotCookiebotDialogBodyButtonDecline,
+        #CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll {
+          order: 2 !important;
+          flex: 0 0 auto !important;
+          width: auto !important;
+          min-width: 105px !important;
+          height: 34px !important;
+          padding: 0 18px !important;
+          background: var(--iy-purple) !important;
+          border: 1px solid var(--iy-purple) !important;
+          border-radius: 9999px !important;
+          color: #FFFFFF !important;
+          font-family: inherit !important;
+          font-size: 12px !important;
+          font-weight: 700 !important;
+          text-align: center !important;
+          white-space: nowrap !important;
+          cursor: pointer !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease !important;
         }
 
         #CybotCookiebotBannerCloseButtonE2E,
         #CybotCookiebotDialog .CybotCookiebotBannerCloseButton {
+          order: 3 !important;
           position: static !important;
           flex: 0 0 auto !important;
           margin: 0 0 0 6px !important;
-          width: 28px !important;
-          height: 28px !important;
+          width: 20px !important;
+          height: 20px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          background: transparent !important;
+          border: none !important;
+          color: #71717A !important;
+          cursor: pointer !important;
+          padding: 0 !important;
         }
       }
 
@@ -467,6 +546,15 @@
     <script>
       (function() {
         function setupCookiebotBanner() {
+          var dialog = document.getElementById('CybotCookiebotDialog');
+          if (!dialog) return;
+
+          // Keep custom styles active after Cookiebot inline styles
+          var customStyle = document.getElementById('cookiebot-custom-styling');
+          if (customStyle && document.head.lastElementChild !== customStyle) {
+            document.head.appendChild(customStyle);
+          }
+
           var acceptBtn = document.getElementById('CybotCookiebotDialogBodyButtonAccept') || 
                           document.getElementById('CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll');
           if (acceptBtn && acceptBtn.textContent.trim().toLowerCase() === 'accept all') {
@@ -478,10 +566,20 @@
             declineBtn.textContent = 'Essential only';
           }
 
-          // Redirect "Show details" link to /policy
+          // Move "Show details" directly inside the text paragraph so it NEVER wraps on a second line
+          var textP = document.querySelector('#CybotCookiebotDialogBodyContentText p') || 
+                      document.getElementById('CybotCookiebotDialogBodyContentText');
           var detailsLink = document.getElementById('CybotCookiebotDialogBodyEdgeMoreDetailsLink') ||
                             document.querySelector('#CybotCookiebotDialogBodyEdgeMoreDetails a') ||
                             document.querySelector('.CybotCookiebotDialogBodyBottomWrapper a');
+
+          if (textP && detailsLink && !textP.contains(detailsLink)) {
+            var space = document.createTextNode(' ');
+            textP.appendChild(space);
+            textP.appendChild(detailsLink);
+          }
+
+          // Redirect "Show details" link to /policy
           if (detailsLink && !detailsLink.dataset.redirectBound) {
             detailsLink.dataset.redirectBound = 'true';
             detailsLink.setAttribute('href', '/policy');
@@ -492,10 +590,28 @@
               window.location.href = '/policy';
             }, true);
           }
+
+          // Ensure close button sits right next to the buttons inside the button cluster
+          var closeBtn = document.getElementById('CybotCookiebotBannerCloseButtonE2E') ||
+                         dialog.querySelector('.CybotCookiebotBannerCloseButton');
+          var buttonsWrapper = document.getElementById('CybotCookiebotDialogBodyButtons') ||
+                               document.getElementById('CybotCookiebotDialogBodyButtonsWrapper') ||
+                               document.getElementById('CybotCookiebotDialogFooter');
+          if (closeBtn && buttonsWrapper && !buttonsWrapper.contains(closeBtn)) {
+            buttonsWrapper.appendChild(closeBtn);
+          }
         }
 
         window.addEventListener('CookiebotOnDialogDisplay', setupCookiebotBanner);
         window.addEventListener('CookiebotOnLoad', setupCookiebotBanner);
+        window.addEventListener('DOMContentLoaded', setupCookiebotBanner);
+
+        var observer = new MutationObserver(function() {
+          if (document.getElementById('CybotCookiebotDialog')) {
+            setupCookiebotBanner();
+          }
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true });
       })();
     </script>
 
