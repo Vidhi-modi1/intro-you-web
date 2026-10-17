@@ -125,63 +125,34 @@
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-      let done = false;
+      let cancelled = false;
       const finish = () => {
-        if (!done) {
-          done = true;
+        if (!cancelled) {
           setLoading(false);
         }
       };
+
       const fontsReady = (document as any).fonts?.ready ?? Promise.resolve();
-      const windowLoaded = new Promise<void>((resolve) => {
-        if (document.readyState === "complete") {
-          resolve();
-        } else {
-          window.addEventListener("load", () => resolve(), { once: true });
-        }
-      });
-      Promise.race([fontsReady, windowLoaded]).then(finish).catch(finish);
-      const timeout = setTimeout(finish, 3000);
+      Promise.race([
+        fontsReady,
+        new Promise((resolve) => setTimeout(resolve, 500)),
+      ])
+        .then(finish)
+        .catch(finish);
+
+      const fallback = setTimeout(finish, 800);
+
       return () => {
-        done = true;
-        clearTimeout(timeout);
+        cancelled = true;
+        clearTimeout(fallback);
       };
     }, []);
 
     return (
       <HelmetProvider>
-        {/* GLOBAL META TAGS — applied on ALL pages */}
-        {/* <Helmet>
-          <title>IntroYou: Get Real Introductions | Dating Made Simple</title>
-
-          <meta
-            name="description"
-            content="No swiping, no games. We provide private, hand-picked introductions focused on true compatibility. Experience the intentional way to date."
-          />
-
-          <link rel="icon" type="image/png" href="/images/favicon-96x96.png" />
-          <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
-          <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-          <link rel="shortcut icon" href="/favicon.ico" />
-
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://intro-you.com/" />
-          <meta property="og:title" content="IntroYou: Get Real Introductions | Dating Made Simple" />
-          <meta
-            property="og:description"
-            content="No swiping, no games. We provide private, hand-picked introductions focused on true compatibility."
-          />
-          <meta property="og:image" content="/images/logo.png" />
-
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:title" content="IntroYou: Get Real Introductions | Dating Made Simple" />
-          <meta property="twitter:description" content="No swiping, no games." />
-          <meta property="twitter:image" content="/images/logo.png" />
-        </Helmet> */}
-
         {loading && (
           <div
-            className="fixed inset-0 flex items-center justify-center bg-white z-50"
+            className="fixed inset-0 flex items-center justify-center bg-white z-[9999]"
             aria-busy="true"
             aria-live="polite"
           >
