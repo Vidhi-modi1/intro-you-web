@@ -326,7 +326,7 @@ useEffect(() => {
 <section
   className="text-white py-20 px-6 relative bg-cover bg-center bg-no-repeat min-h-screen flex items-center"
   style={{
-    backgroundImage: `url('/poster-img.png')`,
+    backgroundImage: `url(${posterImg})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   }}

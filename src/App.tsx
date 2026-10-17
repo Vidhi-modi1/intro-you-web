@@ -123,28 +123,21 @@
     }
 
     const [loading, setLoading] = useState(true);
+    const [loaderFading, setLoaderFading] = useState(false);
 
     useEffect(() => {
-      let cancelled = false;
-      const finish = () => {
-        if (!cancelled) {
-          setLoading(false);
-        }
-      };
+      // Responsive initial splash: smooth fade out after 300ms, unmount after 500ms
+      const fadeTimer = setTimeout(() => {
+        setLoaderFading(true);
+      }, 300);
 
-      const fontsReady = (document as any).fonts?.ready ?? Promise.resolve();
-      Promise.race([
-        fontsReady,
-        new Promise((resolve) => setTimeout(resolve, 500)),
-      ])
-        .then(finish)
-        .catch(finish);
-
-      const fallback = setTimeout(finish, 800);
+      const unmountTimer = setTimeout(() => {
+        setLoading(false);
+      }, 500);
 
       return () => {
-        cancelled = true;
-        clearTimeout(fallback);
+        clearTimeout(fadeTimer);
+        clearTimeout(unmountTimer);
       };
     }, []);
 
@@ -152,11 +145,66 @@
       <HelmetProvider>
         {loading && (
           <div
-            className="fixed inset-0 flex items-center justify-center bg-white z-[9999]"
+            style={{
+              position: "fixed",
+              inset: 0,
+              backgroundColor: "#ffffff",
+              zIndex: 999999,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "16px",
+              opacity: loaderFading ? 0 : 1,
+              transition: "opacity 0.2s ease-out",
+              pointerEvents: loaderFading ? "none" : "auto",
+            }}
             aria-busy="true"
             aria-live="polite"
           >
-            <div className="text-[#820080] text-lg">Loading...</div>
+            {/* Elegant Brand Spinner */}
+            <div style={{ position: "relative", width: "44px", height: "44px" }}>
+              <svg
+                style={{
+                  animation: "iyLoaderSpin 0.8s linear infinite",
+                  width: "44px",
+                  height: "44px",
+                }}
+                viewBox="0 0 48 48"
+                fill="none"
+              >
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="20"
+                  stroke="#F4E6F3"
+                  strokeWidth="4"
+                />
+                <path
+                  d="M24 4C12.9543 4 4 12.9543 4 24"
+                  stroke="#820080"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+            <span
+              style={{
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', sans-serif",
+                color: "#820080",
+                fontSize: "15px",
+                fontWeight: 600,
+                letterSpacing: "0.3px",
+              }}
+            >
+              Loading...
+            </span>
+            <style>{`
+              @keyframes iyLoaderSpin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
           </div>
         )}
         <Router basename="/">
