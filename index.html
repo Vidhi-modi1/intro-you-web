@@ -549,12 +549,6 @@
           var dialog = document.getElementById('CybotCookiebotDialog');
           if (!dialog) return;
 
-          // Keep custom styles active after Cookiebot inline styles
-          var customStyle = document.getElementById('cookiebot-custom-styling');
-          if (customStyle && document.head.lastElementChild !== customStyle) {
-            document.head.appendChild(customStyle);
-          }
-
           var acceptBtn = document.getElementById('CybotCookiebotDialogBodyButtonAccept') || 
                           document.getElementById('CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll');
           if (acceptBtn && acceptBtn.textContent.trim().toLowerCase() === 'accept all') {
@@ -604,14 +598,11 @@
 
         window.addEventListener('CookiebotOnDialogDisplay', setupCookiebotBanner);
         window.addEventListener('CookiebotOnLoad', setupCookiebotBanner);
-        window.addEventListener('DOMContentLoaded', setupCookiebotBanner);
-
-        var observer = new MutationObserver(function() {
-          if (document.getElementById('CybotCookiebotDialog')) {
-            setupCookiebotBanner();
-          }
-        });
-        observer.observe(document.documentElement, { childList: true, subtree: true });
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setupCookiebotBanner);
+        } else {
+          setupCookiebotBanner();
+        }
       })();
     </script>
 
