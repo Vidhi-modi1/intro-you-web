@@ -129,25 +129,22 @@
       #CybotCookiebotDialog {
         position: fixed !important;
         top: auto !important;
-        bottom: 16px !important;
-        left: 16px !important;
-        right: 16px !important;
+        bottom: 12px !important;
+        left: 12px !important;
+        right: 12px !important;
         transform: none !important;
         width: auto !important;
-        max-width: 440px !important;
+        max-width: 460px !important;
         min-width: 0 !important;
         max-height: 85vh !important;
         margin: 0 auto !important;
-        padding: 16px 16px 14px 16px !important;
+        padding: 12px 14px 12px 14px !important;
         border: none !important;
-        border-radius: 16px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+        border-radius: 14px !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
         background: #FFFFFF !important;
         color: var(--iy-text) !important;
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif !important;
-        font-size: 13px !important;
-        line-height: 1.45 !important;
-        letter-spacing: normal !important;
         box-sizing: border-box !important;
         z-index: 2147483645 !important;
         overflow: visible !important;
@@ -157,12 +154,12 @@
       #CybotCookiebotDialog .CybotCookiebotDialogContentWrapper {
         display: flex !important;
         flex-direction: column !important;
-        gap: 14px !important;
+        position: relative !important;
+        gap: 10px !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
         border: 0 !important;
-        position: relative !important;
         box-sizing: border-box !important;
       }
 
@@ -186,7 +183,7 @@
         display: block !important;
         width: 100% !important;
         margin: 0 !important;
-        padding: 0 28px 0 0 !important; /* space for close button on mobile */
+        padding: 0 24px 0 0 !important; /* space for close button in top right */
         box-sizing: border-box !important;
         min-height: 0 !important;
       }
@@ -208,23 +205,24 @@
         margin: 0 !important;
         padding: 0 !important;
         font-family: inherit !important;
-        font-size: 12.5px !important;
-        line-height: 1.45 !important;
+        font-size: 11px !important;
+        line-height: 1.38 !important;
         color: #2D2730 !important;
         font-weight: 400 !important;
+        vertical-align: baseline !important;
       }
 
       /* "Show details" link sits inline right after the text */
       #CybotCookiebotDialogBodyEdgeMoreDetails {
         display: inline !important;
-        margin: 0 0 0 6px !important;
+        margin: 0 0 0 4px !important;
         padding: 0 !important;
       }
 
       #CybotCookiebotDialogBodyEdgeMoreDetailsLink {
         display: inline !important;
         font-family: inherit !important;
-        font-size: 12.5px !important;
+        font-size: 11px !important;
         font-weight: 700 !important;
         color: var(--iy-purple) !important;
         text-decoration: underline !important;
@@ -261,15 +259,15 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 28px !important;
-        height: 28px !important;
+        width: 20px !important;
+        height: 20px !important;
         padding: 0 !important;
         margin: 0 !important;
         border: none !important;
         background: transparent !important;
         color: #71717A !important;
         cursor: pointer !important;
-        border-radius: 6px !important;
+        border-radius: 4px !important;
         transition: color 0.15s ease, background-color 0.15s ease !important;
         z-index: 10 !important;
       }
@@ -282,8 +280,8 @@
 
       #CybotCookiebotBannerCloseButtonE2E svg,
       #CybotCookiebotDialog .CybotCookiebotBannerCloseButton svg {
-        width: 12px !important;
-        height: 12px !important;
+        width: 10px !important;
+        height: 10px !important;
         fill: currentColor !important;
       }
 
@@ -302,7 +300,7 @@
         flex-direction: row !important;
         align-items: center !important;
         justify-content: stretch !important;
-        gap: 10px !important;
+        gap: 8px !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -316,15 +314,15 @@
         flex: 1 1 0 !important;
         min-width: 0 !important;
         width: auto !important;
-        height: 40px !important;
+        height: 36px !important;
         margin: 0 !important;
-        padding: 0 12px !important;
+        padding: 0 8px !important;
         background: var(--iy-purple) !important;
-        border: 1px solid var(--iy-purple) !important;
+        border: none !important;
         border-radius: 9999px !important;
         color: #FFFFFF !important;
         font-family: inherit !important;
-        font-size: 13px !important;
+        font-size: 12px !important;
         font-weight: 700 !important;
         text-align: center !important;
         white-space: nowrap !important;
@@ -342,7 +340,6 @@
       #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll:hover,
       #CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll:hover {
         background: var(--iy-purple-hover) !important;
-        border-color: var(--iy-purple-hover) !important;
       }
 
       #CybotCookiebotDialogBodyButtonAccept:active,
@@ -585,19 +582,30 @@
             }, true);
           }
 
-          // Ensure close button sits right next to the buttons inside the button cluster
+          // Ensure close button sits in contentWrapper on mobile (top-right), and in buttonsWrapper on desktop
           var closeBtn = document.getElementById('CybotCookiebotBannerCloseButtonE2E') ||
                          dialog.querySelector('.CybotCookiebotBannerCloseButton');
+          var contentWrapper = dialog.querySelector('.CybotCookiebotDialogContentWrapper') || dialog;
           var buttonsWrapper = document.getElementById('CybotCookiebotDialogBodyButtons') ||
                                document.getElementById('CybotCookiebotDialogBodyButtonsWrapper') ||
                                document.getElementById('CybotCookiebotDialogFooter');
-          if (closeBtn && buttonsWrapper && !buttonsWrapper.contains(closeBtn)) {
-            buttonsWrapper.appendChild(closeBtn);
+
+          if (closeBtn) {
+            if (window.innerWidth >= 768) {
+              if (buttonsWrapper && !buttonsWrapper.contains(closeBtn)) {
+                buttonsWrapper.appendChild(closeBtn);
+              }
+            } else {
+              if (contentWrapper && closeBtn.parentNode !== contentWrapper) {
+                contentWrapper.appendChild(closeBtn);
+              }
+            }
           }
         }
 
         window.addEventListener('CookiebotOnDialogDisplay', setupCookiebotBanner);
         window.addEventListener('CookiebotOnLoad', setupCookiebotBanner);
+        window.addEventListener('resize', setupCookiebotBanner);
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', setupCookiebotBanner);
         } else {
