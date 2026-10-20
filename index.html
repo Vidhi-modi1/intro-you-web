@@ -285,7 +285,7 @@
         fill: currentColor !important;
       }
 
-      /* 6. Buttons - Mobile side-by-side */
+      /* 6. Buttons - Mobile column layout */
       #CybotCookiebotDialogFooter {
         width: 100% !important;
         margin: 0 !important;
@@ -294,29 +294,38 @@
         background: transparent !important;
       }
 
+      #CybotCookiebotDialogFooter .CybotCookiebotScrollArea {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
       #CybotCookiebotDialogBodyButtons,
       #CybotCookiebotDialogBodyButtonsWrapper {
         display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: stretch !important;
-        gap: 10px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
         border: 0 !important;
+        box-sizing: border-box !important;
       }
 
       #CybotCookiebotDialogBodyButtonAccept,
       #CybotCookiebotDialogBodyButtonDecline,
       #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll,
       #CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll {
-        flex: 1 1 0 !important;
+        flex: 0 0 auto !important;
+        align-self: flex-start !important;
         min-width: 0 !important;
         width: auto !important;
-        height: 38px !important;
+        height: 36px !important;
         margin: 0 !important;
-        padding: 0 16px !important;
+        padding: 0 18px !important;
         background: var(--iy-purple) !important;
         border: none !important;
         border-radius: 9999px !important;
@@ -333,6 +342,7 @@
         align-items: center !important;
         justify-content: center !important;
         transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease !important;
+        box-sizing: border-box !important;
       }
 
       #CybotCookiebotDialogBodyButtonAccept:hover,
@@ -427,6 +437,11 @@
           padding: 0 !important;
           display: flex !important;
           align-items: center !important;
+        }
+
+        #CybotCookiebotDialogFooter .CybotCookiebotScrollArea {
+          padding: 0 !important;
+          width: auto !important;
         }
 
         #CybotCookiebotDialogBodyButtons,
