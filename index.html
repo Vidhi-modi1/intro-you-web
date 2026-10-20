@@ -186,6 +186,8 @@
         padding: 0 24px 0 0 !important; /* space for close button in top right */
         box-sizing: border-box !important;
         min-height: 0 !important;
+        font-size: 11px !important;
+        line-height: 1.25 !important;
       }
 
       #CybotCookiebotDialogBody:not(.CybotCookiebotDialogHide) {
@@ -206,7 +208,7 @@
         padding: 0 !important;
         font-family: inherit !important;
         font-size: 11px !important;
-        line-height: 1.38 !important;
+        line-height: 1.25 !important;
         color: #2D2730 !important;
         font-weight: 400 !important;
         vertical-align: baseline !important;
@@ -285,7 +287,7 @@
         fill: currentColor !important;
       }
 
-      /* 6. Buttons - Mobile column layout */
+      /* 6. Buttons - Mobile row layout */
       #CybotCookiebotDialogFooter {
         width: 100% !important;
         margin: 0 !important;
@@ -295,6 +297,7 @@
       }
 
       #CybotCookiebotDialogFooter .CybotCookiebotScrollArea {
+        padding-top: 0 !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
         width: 100% !important;
@@ -304,9 +307,10 @@
       #CybotCookiebotDialogBodyButtons,
       #CybotCookiebotDialogBodyButtonsWrapper {
         display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
+        flex-direction: row !important;
+        align-items: center !important;
         justify-content: flex-start !important;
+        flex-wrap: wrap !important;
         gap: 8px !important;
         width: 100% !important;
         margin: 0 !important;
@@ -320,7 +324,6 @@
       #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll,
       #CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll {
         flex: 0 0 auto !important;
-        align-self: flex-start !important;
         min-width: 0 !important;
         width: auto !important;
         height: 36px !important;
